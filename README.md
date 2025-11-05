@@ -1,0 +1,146 @@
+# 🚗 Serverless CRUD - Car Credits API
+
+Este proyecto implementa una **API REST Serverless** para gestionar créditos de autos (car credits) con **AWS Lambda**, **API Gateway** y **DynamoDB**, usando el **Serverless Framework**.
+
+---
+
+## 🧠 Descripción del proyecto
+
+La API permite realizar operaciones CRUD (Create, Read, Update, Delete) sobre créditos de autos.  
+Cada crédito almacena información del cliente, vehículo y condiciones del crédito.
+
+### 🧾 Estructura de un crédito
+
+```json
+{
+  "id": "uuid",
+  "clientId": "123456789",
+  "clientName": "John Doe",
+  "phoneNumber": "+57 3001234567",
+  "vehicle": {
+    "plate": "ABC123",
+    "brand": "Toyota",
+    "model": "Corolla 2020"
+  },
+  "creditAmount": 40000000,
+  "installments": 36,
+  "installmentValue": 1500000,
+  "createdAt": "2025-11-04T15:23:11.111Z"
+}
+
+
+⚙️ Tecnologías utilizadas
+Node.js v20
+AWS Lambda
+AWS API Gateway
+AWS DynamoDB
+Serverless Framework
+GitHub Actions (CI/CD)
+Swagger / OpenAPI para documentación
+
+
+🧩 Estructura del proyecto
+serverless-crud-credits/
+├── src/
+│   ├── createCredit.js
+│   ├── getCredit.js
+│   ├── updateCredit.js
+│   ├── deleteCredit.js
+│   └── utils/
+│       └── dynamoClient.js
+├── serverless.yml
+├── package.json
+└── README.md
+
+
+🧱 Arquitectura
+- **AWS Lambda + API Gateway**
+- **DynamoDB (Pay-per-request)**
+- **Serverless Framework**
+- **CI/CD con GitHub Actions**
+
+🌍 Ambientes
+- **Dev:** Rama `develop` → `cars_credits_dev`
+- **Prod:** Rama `master` → `cars_credits_prod`
+
+
+🚀 Despliegue automático (CI/CD)
+Cada git push a la rama main activa un workflow de GitHub Actions que:
+Instala dependencias Node.js
+Configura credenciales AWS
+Ejecuta el comando serverless deploy
+Despliega la API REST y la tabla DynamoDB automáticamente
+Archivo de configuración del pipeline:
+📁 .github/workflows/deploy.yml
+
+
+🔑 Variables de entorno
+En el archivo serverless.yml se definen las variables principales, entre ellas el nombre de la tabla DynamoDB:
+provider:
+  environment:
+    DYNAMODB_TABLE: cars_credits
+
+
+🧪 Endpoints principales
+Método	Ruta	Descripción
+POST	/new_credit 	Crear un nuevo crédito
+GET	/get_credit/{id}	Obtener un crédito por ID
+GET	/credits/{id}	    Obtener un crédito por ID de cliente
+PUT	/update_credit/{id}	    Actualizar un crédito
+DELETE	/delete_credit/{id}	Eliminar un crédito
+
+
+🧰 Ejemplo de uso con Postman
+Crear crédito
+POST /new_credit
+Body:
+{
+  "clientId": "123456789",
+  "clientName": "John Doe",
+  "phoneNumber": "+57 3001234567",
+  "vehicle": {
+    "plate": "XYZ987",
+    "brand": "Mazda",
+    "model": "CX5 2022"
+  },
+  "creditAmount": 60000000,
+  "installments": 48,
+  "installmentValue": 1600000
+}
+
+
+Respuesta esperada:
+{
+  "message": "✅ Credit successfully created in ${STAGE} 🚗💰",
+  "credit": { ... }
+}
+
+
+📦 Cómo desplegar manualmente
+Si quieres desplegar sin CI/CD:
+npm install
+serverless deploy
+
+Esto desplegará la API en tu cuenta AWS, creando automáticamente:
+Una función Lambda por cada endpoint.
+Una tabla DynamoDB (cars_credits).
+Un endpoint público de API Gateway.
+
+
+🧑‍💻 Autor
+Héctor Guillermo Dueñas Rojas
+Desarrollador Backend | Arquitectura Cloud & Serverless
+📍 Colombia
+
+🏁 Licencia
+
+Proyecto de uso educativo — Serverless Guru Challenge 2025
+
+
+---
+
+## ✅ Con este README logras:
+- Explicar el **propósito técnico** y la **arquitectura** del reto.
+- Mostrar los **endpoints y ejemplos de uso**.
+- Dejar claro que sabes usar **CI/CD con GitHub Actions**.
+- Que el revisor pueda **probar tu API sin preguntarte nada.**

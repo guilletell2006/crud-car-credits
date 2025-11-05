@@ -4,10 +4,13 @@ frameworkVersion: '4'
 provider:
   name: aws
   runtime: nodejs20.x
-  region: us-east-1
+  region: ${opt:region, 'us-east-1'}
+  stage: ${opt:stage, 'dev'}
   environment:
-    DYNAMODB_TABLE: cars_credits
-
+    STAGE: ${self:provider.stage}
+    AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
+    DYNAMODB_TABLE: cars_credits_${self:provider.stage}
+    
   iamRoleStatements:
     - Effect: Allow
       Action:
@@ -17,7 +20,7 @@ provider:
         - dynamodb:DeleteItem
         - dynamodb:Scan
       Resource:
-        - arn:aws:dynamodb:us-east-1:929989973262:table/cars_credits
+        - arn:aws:dynamodb:us-east-1:929989973262:table/cars_credits_${self:provider.stage}
 
 functions:
   createCredit:
@@ -26,6 +29,7 @@ functions:
       - httpApi:
           path: /new_credit
           method: post
+          
 
   getCredit:
     handler: src/getCredit.handler
@@ -48,12 +52,19 @@ functions:
           path: /delete_credit/{id}
           method: delete
 
+  getCreditById:
+    handler: src/getCreditById.handler
+    events:
+      - httpApi:
+          path: credits/{id}
+          method: get
+
 resources:
   Resources:
     CreditosAutosTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: ${self:provider.environment.DYNAMODB_TABLE}
+        TableName: cars_credits_${self:provider.stage}
         AttributeDefinitions:
           - AttributeName: id
             AttributeType: S
