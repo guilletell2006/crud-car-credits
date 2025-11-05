@@ -121,7 +121,7 @@ Si quieres desplegar sin CI/CD:
 npm install
 serverless deploy
 
-Esto desplegará la API en tu cuenta AWS, creando automáticamente:
+Esto desplegará la API en tu cuenta AWS, creando automáticamente en cada ambiente dev/prod:
 Una función Lambda por cada endpoint.
 Una tabla DynamoDB (cars_credits).
 Un endpoint público de API Gateway.
