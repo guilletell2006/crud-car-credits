@@ -56,7 +56,7 @@ functions:
     handler: src/getCreditById.handler
     events:
       - httpApi:
-          path: credits/{id}
+          path: /credits/{id}
           method: get
 
 resources:
