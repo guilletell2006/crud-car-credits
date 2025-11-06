@@ -1,6 +1,16 @@
 service: crud-cars-credits
 frameworkVersion: '4'
 
+package:
+  individually: true
+  exclude:
+    - tests/**
+    - .vscode/**
+    - .git/**
+    - *.png
+    - *.jpg
+    - README.md
+
 provider:
   name: aws
   runtime: nodejs20.x
