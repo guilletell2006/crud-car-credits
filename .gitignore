@@ -1,6 +1,9 @@
 # Dependencias
 node_modules/
 
+# Pantallazos del despliegue
+imagenesReto/
+
 # Carpetas generadas por Serverless Framework
 .serverless/
 .aws-sam/

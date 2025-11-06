@@ -1,6 +1,16 @@
 service: crud-cars-credits
 frameworkVersion: '4'
 
+package:
+  individually: true
+  exclude:
+    - "tests/**"
+    - ".vscode/**"
+    - ".git/**"
+    - "*.png"
+    - "*.jpg"
+    - "README.md"
+
 provider:
   name: aws
   runtime: nodejs20.x
@@ -24,15 +34,31 @@ provider:
 
 functions:
   createCredit:
-    handler: src/createCredit.handler
+    handler: src/interfaces/handlers/createCreditHandler.handler
+    package:
+      patterns:
+        - src/interfaces/handlers/createCreditHandler.js
+        - src/application/useCases/createCreditUseCase.js
+        - src/domain/repositories/creditRepository.js
+        - src/infrastructure/database/dynamoClient.js
+        - src/utils/responseBuilder.js
+        - node_modules/**
     events:
       - httpApi:
           path: /new_credit
           method: post
           
 
-  getCredit:
-    handler: src/getCredit.handler
+  getCreditById:
+    handler: src/interfaces/handlers/getCreditByIdHandler.handler
+    package:
+      patterns:
+        - src/interfaces/handlers/getCreditByIdHandler.js
+        - src/application/useCases/getCreditByIdUseCase.js
+        - src/domain/repositories/creditRepository.js
+        - src/infrastructure/database/dynamoClient.js
+        - src/utils/responseBuilder.js
+        - node_modules/**
     events:
       - httpApi:
           path: /get_credit/{id}
@@ -52,7 +78,7 @@ functions:
           path: /delete_credit/{id}
           method: delete
 
-  getCreditById:
+  getCreditByIdClient:
     handler: src/getCreditById.handler
     events:
       - httpApi:
@@ -81,3 +107,7 @@ resources:
                 KeyType: HASH
             Projection:
               ProjectionType: ALL
+
+prune:
+  automatic: true
+  number: 3
