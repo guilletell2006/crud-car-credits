@@ -1,13 +1,13 @@
 const { v4: uuidv4 } = require('uuid');
 
 module.exports = (creditRepository) => async (data) => {
-  if (!data.clientId || !data.clientName) {
+  if (!data.idClient || !data.clientName) {
     throw new Error("Missing client data");
   }
 
   const newCredit = {
     id: uuidv4(),
-    clientId: data.clientId,
+    idClient: data.idClient,
     clientName: data.clientName,
     phoneNumber: data.phoneNumber,
     vehicle: {
