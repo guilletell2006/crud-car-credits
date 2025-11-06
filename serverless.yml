@@ -4,12 +4,12 @@ frameworkVersion: '4'
 package:
   individually: true
   exclude:
-    - tests/**
-    - .vscode/**
-    - .git/**
-    - *.png
-    - *.jpg
-    - README.md
+    - "tests/**"
+    - ".vscode/**"
+    - ".git/**"
+    - "*.png"
+    - "*.jpg"
+    - "README.md"
 
 provider:
   name: aws
