@@ -121,7 +121,7 @@ functions:
         - node_modules/**
     events:
       - httpApi:
-          path: /credits/{idClient}
+          path:  /client/{idClient}/credits
           method: get
 
 resources:
