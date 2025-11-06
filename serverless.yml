@@ -64,25 +64,64 @@ functions:
           path: /get_credit/{id}
           method: get
 
-  updateCredit:
-    handler: src/updateCredit.handler
+  getAllCredits:
+    handler: src/interfaces/handlers/getAllCreditsHandler.handler
+    package:
+      patterns:
+        - src/interfaces/handlers/getAllCreditsHandler.js
+        - src/application/useCases/getAllCreditsUseCase.js
+        - src/domain/repositories/creditRepository.js
+        - src/infrastructure/database/dynamoClient.js
+        - src/utils/responseBuilder.js
+        - node_modules/**
     events:
       - httpApi:
-          path: /update_credit/{id}
+          path: /get_allcredits
+          method: get
+
+  updateCredit:
+    handler: src/interfaces/handlers/updateCreditHandler.handler
+    package:
+      patterns:
+        - src/interfaces/handlers/updateCreditHandler.js
+        - src/application/useCases/updateCreditUseCase.js
+        - src/domain/repositories/creditRepository.js
+        - src/infrastructure/database/dynamoClient.js
+        - src/utils/responseBuilder.js
+        - node_modules/**
+    events:
+      - httpApi:
+          path: /update_credit
           method: put
 
   deleteCredit:
-    handler: src/deleteCredit.handler
+    handler: src/interfaces/handlers/deleteCreditHandler.handler
+    package:
+      patterns:
+        - src/interfaces/handlers/deleteCreditHandler.js
+        - src/application/useCases/deleteCreditUseCase.js
+        - src/domain/repositories/creditRepository.js
+        - src/infrastructure/database/dynamoClient.js
+        - src/utils/responseBuilder.js
+        - node_modules/**
     events:
       - httpApi:
           path: /delete_credit/{id}
           method: delete
 
-  getCreditByIdClient:
-    handler: src/getCreditById.handler
+  getCreditsByIdClient:
+    handler: src/interfaces/handlers/getCreditsByClientIdHandler.handler
+    package:
+      patterns:
+        - src/interfaces/handlers/getCreditsByClientIdHandler.js
+        - src/application/useCases/getCreditsByClientIdUseCase.js
+        - src/domain/repositories/creditRepository.js
+        - src/infrastructure/database/dynamoClient.js
+        - src/utils/responseBuilder.js
+        - node_modules/**
     events:
       - httpApi:
-          path: /credits/{id}
+          path:  /client/{idClient}/credits
           method: get
 
 resources:
@@ -107,7 +146,3 @@ resources:
                 KeyType: HASH
             Projection:
               ProjectionType: ALL
-
-prune:
-  automatic: true
-  number: 3
