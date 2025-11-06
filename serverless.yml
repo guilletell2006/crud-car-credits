@@ -99,15 +99,3 @@ resources:
             Projection:
               ProjectionType: ALL
 
-plugins:
-  - serverless-esbuild
-
-custom:
-  esbuild:
-    bundle: true
-    minify: true
-    sourcemap: false
-    exclude: ['aws-sdk']
-    target: 'node20'
-    platform: 'node'
-    concurrency: 10
