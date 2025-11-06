@@ -127,6 +127,14 @@ Una tabla DynamoDB (cars_credits).
 Un endpoint público de API Gateway.
 
 
+✅ Mejoras aplicadas
+** Reorganización del código siguiendo principios de arquitectura limpia
+** Separación de lógica de negocio, acceso a datos y controladores
+** Modularización de funciones Lambda
+** Empaquetado individual optimizado
+
+
+
 🧑‍💻 Autor
 Héctor Guillermo Dueñas Rojas
 Desarrollador Backend | Arquitectura Cloud & Serverless
@@ -139,8 +147,3 @@ Proyecto de uso educativo — Serverless Guru Challenge 2025
 
 ---
 
-## ✅ Con este README logras:
-- Explicar el **propósito técnico** y la **arquitectura** del reto.
-- Mostrar los **endpoints y ejemplos de uso**.
-- Dejar claro que sabes usar **CI/CD con GitHub Actions**.
-- Que el revisor pueda **probar tu API sin preguntarte nada.**
