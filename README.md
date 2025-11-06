@@ -133,6 +133,11 @@ Un endpoint público de API Gateway.
 ** Modularización de funciones Lambda
 ** Empaquetado individual optimizado
 
+✅ Optimización con serverless-esbuild
+** Empaquetado inteligente por función
+** Eliminación de dependencias innecesarias
+** Reducción de tamaño y tiempo de despliegue
+** Simplificación del serverless.yml
 
 
 🧑‍💻 Autor

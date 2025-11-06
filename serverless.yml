@@ -35,14 +35,6 @@ provider:
 functions:
   createCredit:
     handler: src/interfaces/handlers/createCreditHandler.handler
-    package:
-      patterns:
-        - src/interfaces/handlers/createCreditHandler.js
-        - src/application/useCases/createCreditUseCase.js
-        - src/domain/repositories/creditRepository.js
-        - src/infrastructure/database/dynamoClient.js
-        - src/utils/responseBuilder.js
-        - node_modules/**
     events:
       - httpApi:
           path: /new_credit
@@ -51,14 +43,6 @@ functions:
 
   getCreditById:
     handler: src/interfaces/handlers/getCreditByIdHandler.handler
-    package:
-      patterns:
-        - src/interfaces/handlers/getCreditByIdHandler.js
-        - src/application/useCases/getCreditByIdUseCase.js
-        - src/domain/repositories/creditRepository.js
-        - src/infrastructure/database/dynamoClient.js
-        - src/utils/responseBuilder.js
-        - node_modules/**
     events:
       - httpApi:
           path: /get_credit/{id}
@@ -66,14 +50,6 @@ functions:
 
   getAllCredits:
     handler: src/interfaces/handlers/getAllCreditsHandler.handler
-    package:
-      patterns:
-        - src/interfaces/handlers/getAllCreditsHandler.js
-        - src/application/useCases/getAllCreditsUseCase.js
-        - src/domain/repositories/creditRepository.js
-        - src/infrastructure/database/dynamoClient.js
-        - src/utils/responseBuilder.js
-        - node_modules/**
     events:
       - httpApi:
           path: /get_allcredits
@@ -81,14 +57,6 @@ functions:
 
   updateCredit:
     handler: src/interfaces/handlers/updateCreditHandler.handler
-    package:
-      patterns:
-        - src/interfaces/handlers/updateCreditHandler.js
-        - src/application/useCases/updateCreditUseCase.js
-        - src/domain/repositories/creditRepository.js
-        - src/infrastructure/database/dynamoClient.js
-        - src/utils/responseBuilder.js
-        - node_modules/**
     events:
       - httpApi:
           path: /update_credit
@@ -96,14 +64,6 @@ functions:
 
   deleteCredit:
     handler: src/interfaces/handlers/deleteCreditHandler.handler
-    package:
-      patterns:
-        - src/interfaces/handlers/deleteCreditHandler.js
-        - src/application/useCases/deleteCreditUseCase.js
-        - src/domain/repositories/creditRepository.js
-        - src/infrastructure/database/dynamoClient.js
-        - src/utils/responseBuilder.js
-        - node_modules/**
     events:
       - httpApi:
           path: /delete_credit/{id}
@@ -111,14 +71,6 @@ functions:
 
   getCreditsByIdClient:
     handler: src/interfaces/handlers/getCreditsByClientIdHandler.handler
-    package:
-      patterns:
-        - src/interfaces/handlers/getCreditsByClientIdHandler.js
-        - src/application/useCases/getCreditsByClientIdUseCase.js
-        - src/domain/repositories/creditRepository.js
-        - src/infrastructure/database/dynamoClient.js
-        - src/utils/responseBuilder.js
-        - node_modules/**
     events:
       - httpApi:
           path:  /client/{idClient}/credits
@@ -146,3 +98,16 @@ resources:
                 KeyType: HASH
             Projection:
               ProjectionType: ALL
+
+plugins:
+  - serverless-esbuild
+
+custom:
+  esbuild:
+    bundle: true
+    minify: true
+    sourcemap: false
+    exclude: ['aws-sdk']
+    target: 'node20'
+    platform: 'node'
+    concurrency: 10
