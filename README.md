@@ -14,7 +14,7 @@ Cada crédito almacena información del cliente, vehículo y condiciones del cr�
 ```json
 {
   "id": "uuid",
-  "clientId": "123456789",
+  "idClient": "123456789",
   "clientName": "John Doe",
   "phoneNumber": "+57 3001234567",
   "vehicle": {
@@ -133,6 +133,11 @@ Un endpoint público de API Gateway.
 ** Modularización de funciones Lambda
 ** Empaquetado individual optimizado
 
+✅ Empaquetado optimizado con ESBuild nativo
+** Eliminación del plugin externo serverless-esbuild
+** Uso del empaquetado automático de Serverless Framework v4.23+
+** Simplificación del serverless.yml
+** Reducción de tamaño y tiempo de despliegue
 
 
 🧑‍💻 Autor
