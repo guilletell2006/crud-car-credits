@@ -41,16 +41,30 @@ Swagger / OpenAPI para documentación
 
 🧩 Estructura del proyecto
 serverless-crud-credits/
-├── src/
-│   ├── createCredit.js
-│   ├── getCredit.js
-│   ├── updateCredit.js
-│   ├── deleteCredit.js
-│   └── utils/
-│       └── dynamoClient.js
-├── serverless.yml
-├── package.json
-└── README.md
+.
+├── .github/
+│   └── workflows/
+│       └── deploy.yml              # Flujo de CI/CD para despliegue con GitHub Actions
+├── node_modules/                   # Dependencias del proyecto (generado por npm)
+├── src/                            # Código fuente principal
+│   ├── application/
+│   │   └── useCases/              # Casos de uso (lógica de negocio)
+│   ├── domain/
+│   │   └── repositories/          # Interfaces de repositorio del dominio
+│   ├── infrastructure/            # Implementaciones técnicas (ej. acceso a datos, servicios externos)
+│   ├── interfaces/
+│   │   └── handlers/              # Handlers para operaciones CRUD
+│   └── utils/                     # Funciones auxiliares y utilidades
+├── test/
+│   └── createCreditUseCase.test.js # Pruebas unitarias del caso de uso de creación de crédito
+├── .gitignore                      # Archivos y carpetas ignoradas por Git
+├── DesplieguePruebasUnitarias.jpg # Imagen ilustrativa del despliegue de pruebas
+├── package.json                    # Configuración del proyecto Node.js
+├── package-lock.json              # Mapa exacto de dependencias instaladas
+├── README.md                       # Documentación del proyecto
+└── serverless.yml                  # Configuración del Serverless Framework
+
+
 
 
 🧱 Arquitectura
