@@ -4,7 +4,7 @@ frameworkVersion: '4'
 package:
   individually: true
   exclude:
-    - "tests/**"
+    - "test/**"
     - ".vscode/**"
     - ".git/**"
     - "*.png"
