@@ -29,8 +29,10 @@ provider:
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
         - dynamodb:Scan
+        - dynamodb:Query
       Resource:
         - arn:aws:dynamodb:us-east-1:929989973262:table/cars_credits_${self:provider.stage}
+        - arn:aws:dynamodb:us-east-1:929989973262:table/cars_credits_${self:provider.stage}/index/IdClientIndex
 
 functions:
   createCredit:
