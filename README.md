@@ -14,7 +14,7 @@ Cada crédito almacena información del cliente, vehículo y condiciones del cr�
 ```json
 {
   "id": "uuid",
-  "clientId": "123456789",
+  "idClient": "123456789",
   "clientName": "John Doe",
   "phoneNumber": "+57 3001234567",
   "vehicle": {
